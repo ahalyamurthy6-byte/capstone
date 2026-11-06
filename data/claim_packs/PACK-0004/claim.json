@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0004",
+  "scenario": "clean",
+  "policy_number": "POL-1001",
+  "claimant_name": "Chloe Gonzalez",
+  "claimant_email": "chloe.gonzalez@example.com",
+  "incident_date": "2026-09-26",
+  "claim_type": "hospitalisation",
+  "amount": 3319.0,
+  "description": "Inpatient treatment following severe abdominal pain and urgent admission.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.pdf",
+    "medical_report.pdf"
+  ]
+}

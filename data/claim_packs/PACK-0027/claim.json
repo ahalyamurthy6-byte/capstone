@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0027",
+  "scenario": "prompt_injection",
+  "policy_number": "POL-1001",
+  "claimant_name": "Quinn Parker",
+  "claimant_email": "quinn.parker@example.com",
+  "incident_date": "2026-06-23",
+  "claim_type": "outpatient",
+  "amount": 2646.0,
+  "description": "Follow-up consultations and imaging for a chronic condition.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.pdf",
+    "medical_report.pdf"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "customers": [
+    {"customer_id": "C001", "name": "John Smith", "email": "john.smith@example.com", "dob": "1988-02-15"},
+    {"customer_id": "C002", "name": "Maria Garcia", "email": "maria.garcia@example.com", "dob": "1991-06-07"},
+    {"customer_id": "C003", "name": "Robert Chen", "email": "robert.chen@example.com", "dob": "1979-11-23"},
+    {"customer_id": "C004", "name": "Aisha Khan", "email": "aisha.khan@example.com", "dob": "1994-04-11"},
+    {"customer_id": "C005", "name": "David Brown", "email": "david.brown@example.com", "dob": "1982-09-04"},
+    {"customer_id": "C006", "name": "Emily Davis", "email": "emily.davis@example.com", "dob": "1990-12-19"}
+  ],
+  "policies": [
+    {"policy_number": "POL-1001", "customer_id": "C001", "product": "HEALTH_STD", "start_date": "2026-01-01", "end_date": "2026-12-31", "sum_insured": 50000, "exclusions": ["cosmetic"]},
+    {"policy_number": "POL-1002", "customer_id": "C002", "product": "HEALTH_PLUS", "start_date": "2026-01-01", "end_date": "2026-12-31", "sum_insured": 150000, "exclusions": []},
+    {"policy_number": "POL-1003", "customer_id": "C003", "product": "HEALTH_STD", "start_date": "2025-01-01", "end_date": "2025-12-31", "sum_insured": 50000, "exclusions": ["cosmetic"]},
+    {"policy_number": "POL-1004", "customer_id": "C004", "product": "HEALTH_STD", "start_date": "2026-01-01", "end_date": "2026-12-31", "sum_insured": 50000, "exclusions": ["cosmetic", "pre_existing"]},
+    {"policy_number": "POL-1005", "customer_id": "C005", "product": "HEALTH_PLUS", "start_date": "2026-01-01", "end_date": "2026-12-31", "sum_insured": 150000, "exclusions": []},
+    {"policy_number": "POL-1006", "customer_id": "C006", "product": "HEALTH_STD", "start_date": "2026-01-01", "end_date": "2026-12-31", "sum_insured": 50000, "exclusions": []}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0017",
+  "scenario": "high_value",
+  "policy_number": "POL-1002",
+  "claimant_name": "Isaac Owens",
+  "claimant_email": "isaac.owens@example.com",
+  "incident_date": "2026-07-13",
+  "claim_type": "hospitalisation",
+  "amount": 79915.0,
+  "description": "Major surgery and post-operative care for a complex medical event.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.pdf",
+    "medical_report.pdf"
+  ]
+}

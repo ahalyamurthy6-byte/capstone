@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0021",
+  "scenario": "out_of_policy",
+  "policy_number": "POL-1001",
+  "claimant_name": "Rosa Harris",
+  "claimant_email": "rosa.harris@example.com",
+  "incident_date": "2026-10-26",
+  "claim_type": "cosmetic",
+  "amount": 2332.0,
+  "description": "Cosmetic surgery charges for facial enhancement and skin treatment.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.pdf",
+    "medical_report.pdf"
+  ]
+}

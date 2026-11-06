@@ -1,0 +1,222 @@
+x-app: &app
+  build: .
+  image: claims-agent:latest
+  env_file:
+    - .env
+  environment:
+    DATABASE_URL: postgresql://claims:claims@postgres:5432/genAI_training
+    OLLAMA_BASE_URL: http://host.docker.internal:11434
+    SMTP_HOST: mailpit
+    SMTP_PORT: "1025"
+    PHOENIX_ENDPOINT: http://phoenix:6006
+    MCP_MODE: http
+    MCP_URL_CASE: http://case-mcp:8001/mcp
+    MCP_URL_POLICY: http://policy-mcp:8002/mcp
+    MCP_URL_DOCUMENTS: http://documents-mcp:8003/mcp
+    MCP_URL_WORKFLOW: http://workflow-mcp:8004/mcp
+    DOCS_DIR: /app/data/uploads
+  extra_hosts:
+    - host.docker.internal:host-gateway
+  volumes:
+    - uploads:/app/data/uploads
+  restart: unless-stopped
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: claims
+      POSTGRES_PASSWORD: claims
+      POSTGRES_DB: genAI_training
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/00_extensions.sql:/docker-entrypoint-initdb.d/00_extensions.sql:ro
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U claims -d genAI_training"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  mailpit:
+    image: axllent/mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  phoenix:
+    image: arizephoenix/phoenix
+    ports:
+      - "6006:6006"
+      - "4317:4317"
+    volumes:
+      - phoenix_data:/mnt/data
+    environment:
+      PHOENIX_WORKING_DIR: /mnt/data
+
+  bootstrap:
+    <<: *app
+    restart: "no"
+    command: sh -c "python -m scripts.init_db && python -m scripts.make_claim_packs && python -m db.seed"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  case-mcp:
+    <<: *app
+    command: python -m mcp_servers.case.server
+    environment:
+      DATABASE_URL: postgresql://claims:claims@postgres:5432/genAI_training
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+      PHOENIX_ENDPOINT: http://phoenix:6006
+      MCP_MODE: http
+      MCP_PORT: "8001"
+      MCP_TRANSPORT: streamable-http
+      MCP_URL_CASE: http://case-mcp:8001/mcp
+      MCP_URL_POLICY: http://policy-mcp:8002/mcp
+      MCP_URL_DOCUMENTS: http://documents-mcp:8003/mcp
+      MCP_URL_WORKFLOW: http://workflow-mcp:8004/mcp
+      DOCS_DIR: /app/data/uploads
+    ports:
+      - "8001:8001"
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('localhost', 8001), 2)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  policy-mcp:
+    <<: *app
+    command: python -m mcp_servers.policy.server
+    environment:
+      DATABASE_URL: postgresql://claims:claims@postgres:5432/genAI_training
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+      PHOENIX_ENDPOINT: http://phoenix:6006
+      MCP_MODE: http
+      MCP_PORT: "8002"
+      MCP_TRANSPORT: streamable-http
+      MCP_URL_CASE: http://case-mcp:8001/mcp
+      MCP_URL_POLICY: http://policy-mcp:8002/mcp
+      MCP_URL_DOCUMENTS: http://documents-mcp:8003/mcp
+      MCP_URL_WORKFLOW: http://workflow-mcp:8004/mcp
+      DOCS_DIR: /app/data/uploads
+    ports:
+      - "8002:8002"
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('localhost', 8002), 2)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  documents-mcp:
+    <<: *app
+    command: python -m mcp_servers.documents.server
+    environment:
+      DATABASE_URL: postgresql://claims:claims@postgres:5432/genAI_training
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+      PHOENIX_ENDPOINT: http://phoenix:6006
+      MCP_MODE: http
+      MCP_PORT: "8003"
+      MCP_TRANSPORT: streamable-http
+      MCP_URL_CASE: http://case-mcp:8001/mcp
+      MCP_URL_POLICY: http://policy-mcp:8002/mcp
+      MCP_URL_DOCUMENTS: http://documents-mcp:8003/mcp
+      MCP_URL_WORKFLOW: http://workflow-mcp:8004/mcp
+      DOCS_DIR: /app/data/uploads
+    ports:
+      - "8003:8003"
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('localhost', 8003), 2)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 120s
+
+  workflow-mcp:
+    <<: *app
+    command: python -m mcp_servers.workflow.server
+    environment:
+      DATABASE_URL: postgresql://claims:claims@postgres:5432/genAI_training
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+      PHOENIX_ENDPOINT: http://phoenix:6006
+      MCP_MODE: http
+      MCP_PORT: "8004"
+      MCP_TRANSPORT: streamable-http
+      MCP_URL_CASE: http://case-mcp:8001/mcp
+      MCP_URL_POLICY: http://policy-mcp:8002/mcp
+      MCP_URL_DOCUMENTS: http://documents-mcp:8003/mcp
+      MCP_URL_WORKFLOW: http://workflow-mcp:8004/mcp
+      DOCS_DIR: /app/data/uploads
+    ports:
+      - "8004:8004"
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('localhost', 8004), 2)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  sla-worker:
+    <<: *app
+    command: python -m sla_worker.main
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+
+  ui:
+    <<: *app
+    command: streamlit run ui/app.py --server.address=0.0.0.0 --server.port=8501
+    ports:
+      - "8501:8501"
+    depends_on:
+      case-mcp:
+        condition: service_healthy
+      policy-mcp:
+        condition: service_healthy
+      documents-mcp:
+        condition: service_healthy
+      workflow-mcp:
+        condition: service_healthy
+      phoenix:
+        condition: service_started
+
+  ollama:
+    image: ollama/ollama
+    profiles: ["ollama"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  pgdata:
+  uploads:
+  phoenix_data:
+  ollama_data:

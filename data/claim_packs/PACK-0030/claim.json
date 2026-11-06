@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0030",
+  "scenario": "mismatch",
+  "policy_number": "POL-1004",
+  "claimant_name": "Alicia Diaz",
+  "claimant_email": "alicia.diaz@example.com",
+  "incident_date": "2026-07-26",
+  "claim_type": "hospitalisation",
+  "amount": 5996.0,
+  "description": "Inpatient care with a billing mismatch between the invoice and submitted claim.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.pdf",
+    "medical_report.pdf"
+  ]
+}

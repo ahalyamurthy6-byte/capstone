@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0001",
+  "scenario": "clean",
+  "policy_number": "POL-1001",
+  "claimant_name": "Daniel Adams",
+  "claimant_email": "daniel.adams@example.com",
+  "incident_date": "2026-05-31",
+  "claim_type": "hospitalisation",
+  "amount": 3579.0,
+  "description": "Inpatient treatment following severe abdominal pain and urgent admission.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.pdf",
+    "medical_report.pdf"
+  ]
+}

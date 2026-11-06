@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0015",
+  "scenario": "duplicate",
+  "policy_number": "POL-1006",
+  "claimant_name": "Emily Davis",
+  "claimant_email": "emily.davis@example.com",
+  "incident_date": "2026-03-12",
+  "claim_type": "hospitalisation",
+  "amount": 2800.0,
+  "description": "Repeat hospitalisation claim for the same event as the prior approved case.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.pdf",
+    "medical_report.pdf"
+  ]
+}

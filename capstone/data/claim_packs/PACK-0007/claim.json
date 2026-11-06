@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0007",
+  "scenario": "poor_scan",
+  "policy_number": "POL-1001",
+  "claimant_name": "Nora Kim",
+  "claimant_email": "nora.kim@example.com",
+  "incident_date": "2026-03-22",
+  "claim_type": "hospitalisation",
+  "amount": 3384.0,
+  "description": "Emergency admission and observation for chest pain evaluation.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.png",
+    "medical_report.pdf"
+  ]
+}

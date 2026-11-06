@@ -1,0 +1,14 @@
+{
+  "pack_id": "PACK-0012",
+  "scenario": "missing_docs",
+  "policy_number": "POL-1001",
+  "claimant_name": "Chloe Baker",
+  "claimant_email": "chloe.baker@example.com",
+  "incident_date": "2026-07-08",
+  "claim_type": "outpatient",
+  "amount": 2138.0,
+  "description": "Physiotherapy and diagnostic consultation following shoulder pain.",
+  "documents": [
+    "claim_form.pdf"
+  ]
+}

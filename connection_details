@@ -1,0 +1,32 @@
+To connect to PostgreSQL:
+
+Launch pgAdmin4 from the desktop icon
+Click "Add New Server"
+Fill in:
+Name: LocalPostgreSQL (or any name)
+Host: localhost
+Port: 5432
+Username: postgres
+Password: (leave blank if no password is set)
+Database: testdb
+Click Save
+
+
+systemctl status postgresql
+
+1. From pgAdmin4 Desktop (Easiest)
+Double-click pgAdmin4 icon on your desktop
+Click "Add New Server"
+Fill in the details:
+Name: genai_training
+Host: localhost
+Port: 5432
+Username: postgres
+Password: (leave empty)
+Database: genai_training
+Click Save
+
+
+admin123 - master password
+postgres123
+password123

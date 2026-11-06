@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0020",
+  "scenario": "high_value",
+  "policy_number": "POL-1002",
+  "claimant_name": "Hannah Foster",
+  "claimant_email": "hannah.foster@example.com",
+  "incident_date": "2026-07-17",
+  "claim_type": "hospitalisation",
+  "amount": 77073.0,
+  "description": "Major surgery and post-operative care for a complex medical event.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.pdf",
+    "medical_report.pdf"
+  ]
+}

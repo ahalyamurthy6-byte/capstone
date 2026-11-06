@@ -1,0 +1,8 @@
+ genai_training | postgres | UTF8     | C.UTF-8 | C.UTF-8 | 
+ postgres       | postgres | UTF8     | C.UTF-8 | C.UTF-8 | 
+ template0      | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+                |          |          |         |         | postgres=CTc/postgres
+ template1      | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+                |          |          |         |         | postgres=CTc/postgres
+ testdb         | postgres | UTF8     | C.UTF-8 | C.UTF-8 | 
+

@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0019",
+  "scenario": "high_value",
+  "policy_number": "POL-1002",
+  "claimant_name": "Chloe Turner",
+  "claimant_email": "chloe.turner@example.com",
+  "incident_date": "2026-05-24",
+  "claim_type": "hospitalisation",
+  "amount": 79903.0,
+  "description": "Major surgery and post-operative care for a complex medical event.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.pdf",
+    "medical_report.pdf"
+  ]
+}

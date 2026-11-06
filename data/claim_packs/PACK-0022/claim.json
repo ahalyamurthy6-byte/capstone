@@ -1,0 +1,16 @@
+{
+  "pack_id": "PACK-0022",
+  "scenario": "out_of_policy",
+  "policy_number": "POL-1003",
+  "claimant_name": "Benjamin Kim",
+  "claimant_email": "benjamin.kim@example.com",
+  "incident_date": "2025-08-18",
+  "claim_type": "hospitalisation",
+  "amount": 4710.0,
+  "description": "Hospitalisation claim for treatment outside the active policy period.",
+  "documents": [
+    "claim_form.pdf",
+    "invoice.pdf",
+    "medical_report.pdf"
+  ]
+}

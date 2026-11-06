@@ -1,0 +1,8 @@
+[
+  {"staff_id": "ADJ-1", "name": "Alice Adjuster", "role": "adjuster", "approval_limit": 0, "email": "alice.adjuster@claims.local"},
+  {"staff_id": "ADJ-2", "name": "Bob Adjuster", "role": "adjuster", "approval_limit": 0, "email": "bob.adjuster@claims.local"},
+  {"staff_id": "APR-1", "name": "Carol Approver", "role": "approver", "approval_limit": 5000, "email": "carol.approver@claims.local"},
+  {"staff_id": "APR-2", "name": "Dan Approver", "role": "approver", "approval_limit": 25000, "email": "dan.approver@claims.local"},
+  {"staff_id": "APR-3", "name": "Eve Approver", "role": "approver", "approval_limit": 100000, "email": "eve.approver@claims.local"},
+  {"staff_id": "SUP-1", "name": "Sam Supervisor", "role": "supervisor", "approval_limit": 0, "email": "sam.supervisor@claims.local"}
+]
